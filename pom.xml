@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>motorpolicyswaggerinterface</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>api-swg-motorpolicy</name>
+	<description>Motor Policy Service API Swaghger Interface.</description>
+
+	<licenses>
+		<license>
+			<name>Esure Ltd</name>
+			<url>http://www.esure.com/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<java.version>1.8</java.version>
+
+		<swagger.codegen.version>2.2.3</swagger.codegen.version>
+		<swagger.version>1.5.4</swagger.version>
+		<swagger.inputSpec>src/main/resources/swagger.yaml</swagger.inputSpec>
+		<swagger.modelPackage>com.esure.api.motorpolicy.swagger.model</swagger.modelPackage>
+		<swagger.apiPackage>com.esure.api.motorpolicy.swagger.api</swagger.apiPackage>
+
+    	<maven.test.skip>true</maven.test.skip>
+	</properties>
+
+	<parent>
+		<groupId>com.esure.api</groupId>
+		<artifactId>swagger-parent</artifactId>
+		<version>0.0.1</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<build>
+
+		<plugins>
+
+			<!-- Generate REST default interface from Swagger spec -->
+			<plugin>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-codegen-maven-plugin</artifactId>
+				<version>${swagger.codegen.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${swagger.inputSpec}</inputSpec>
+							<output></output>
+							<addCompileSourceRoot>true</addCompileSourceRoot>
+							<!-- >output>${project.source.directory}</output -->
+							<modelPackage>${swagger.modelPackage}</modelPackage>
+							<apiPackage>${swagger.apiPackage}</apiPackage>
+							<generateApiTests>true</generateApiTests>
+							<generateModelTests>true</generateModelTests>
+							<generateSupportingFiles>false</generateSupportingFiles>
+							<language>spring</language>
+							<configOptions>
+								<sourceFolder>src/gen/java/main</sourceFolder>
+								<dateLibrary>java8</dateLibrary>
+								<interfaceOnly>true</interfaceOnly>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
